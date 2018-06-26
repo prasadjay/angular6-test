@@ -1,0 +1,42 @@
+<p>
+  jay works!
+</p>
+
+<h1>
+  {{prasadText}}
+</h1>
+
+<div>Months : 
+  <!-- <select [(ngModel)]="monthValues" (change)="selectMonth(monthValues)">
+    <option *ngFor="let i of monthList" [ngValue]="i">{{i}}</option>
+  </select> -->
+
+  <select  type="text"  name="monthValues" ngModel (change)="selectMonth(monthValues)">
+    <option *ngFor="let c of monthList" value="c" > {{c}} </option>
+  </select>
+
+</div>
+<br/>
+<div>
+  <span *ngIf="isavailable==true">Condition is valid</span>
+  <span *ngIf="isavailable==false">Condition is Invalid</span>
+  <br/>
+  <span *ngIf="isavailable==true; else condition1">Condition is valid</span>
+  <ng-template #condition1>Condition is Invalid</ng-template>
+  <br/>
+  <span *ngIf="isavailable; then condition3 else condition4"></span>
+  <ng-template #condition3>Condition is valid</ng-template>
+  <ng-template #condition4>Condition is invalid</ng-template>
+  <br/>
+  
+  <button (click)="myClickFunction($event)">Click Me</button>
+
+  <input type="text" class="form-control" id="name"
+       required
+       [(ngModel)]="model.name" name="name">
+TODO: remove this: {{model.name}}
+
+  
+
+</div>
+
