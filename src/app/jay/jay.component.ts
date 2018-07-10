@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {DataService} from '../services/data.service';
 
 @Component({
   selector: 'app-jay',
@@ -7,13 +8,60 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JayComponent implements OnInit {
  
-  prasadText = "Huehuehue indeed...";
+  prasadText = "Jay Component goes here...";
   monthList = ["jan", "feb", "mar", "apr", "may"];
   isavailable= false;
-  constructor() { }
+
+  name:string;
+  age:number;
+  email:string;
+  address: {
+    street:string,
+    city:string,
+    state:string
+  }
+  hobbies:string[];
+  posts:Post[];
+  isEdit:boolean = false;
+
+  constructor(private dataService:DataService) { }
 
   ngOnInit() {
     console.log("Initiating Jay App compoenent.");
+
+    this.name = "Prasad";
+    this.age = 27;
+    this.email = 'jay@gmail.com';
+    this.address = {
+      street:'aaa',
+      city:'bbb',
+      state:'ccc'
+    }
+    this.hobbies = ['movies', 'games'];
+
+    this.dataService.getPosts().subscribe((posts) =>{
+      this.posts = posts;
+    }) 
+
+  }
+
+  onClick(){
+    console.log("Button clicked!");
+    this.name = 'Brad';
+  }
+
+  addHobby(hobby){
+    console.log(hobby);
+    this.hobbies.push(hobby);
+  }
+
+  deleteHobby(hobby){
+    console.log(hobby);
+    for(let x=0; x<this.hobbies.length; x++){
+      if (this.hobbies[x] == hobby){
+        this.hobbies.splice(x, 1);
+      }
+    }
   }
 
   myClickFunction(event){
@@ -24,4 +72,14 @@ export class JayComponent implements OnInit {
     console.log(monthValues);
   }
 
+  toggleEdit(){
+    this.isEdit = !this.isEdit;
+  }
+}
+
+interface Post{
+  id:number,
+  title:string,
+  body:string,
+  userId:number
 }

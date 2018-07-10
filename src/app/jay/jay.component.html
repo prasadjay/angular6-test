@@ -2,22 +2,13 @@
   jay works!
 </p>
 
-<h1>
+<h3>
   {{prasadText}}
-</h1>
+</h3>
 
-<div>Months : 
-  <!-- <select [(ngModel)]="monthValues" (change)="selectMonth(monthValues)">
-    <option *ngFor="let i of monthList" [ngValue]="i">{{i}}</option>
-  </select> -->
-
-  <select  type="text"  name="monthValues" ngModel (change)="selectMonth(monthValues)">
-    <option *ngFor="let c of monthList" value="c" > {{c}} </option>
-  </select>
-
-</div>
 <br/>
 <div>
+  <!--
   <span *ngIf="isavailable==true">Condition is valid</span>
   <span *ngIf="isavailable==false">Condition is Invalid</span>
   <br/>
@@ -36,6 +27,67 @@
        [(ngModel)]="model.name" name="name">
 TODO: remove this: {{model.name}}
 
+  -->
+
+  <button (click)="onClick()">Click Me</button>
+  <button (click)="toggleEdit()">Edit User</button>
+
+  <div *ngIf=isEdit>
+    <h1>Edit User</h1>
+    <form>
+      <div>
+        <label for="name">Name: </label>
+        <input type="text" [(ngModel)]="name" name="name">
+      </div>
+      <div>
+          <label for="email">Email: </label>
+          <input type="text" [(ngModel)]="email" name="email">
+        </div>
+      <div>
+          <label for="age">Age: </label>
+          <input type="number" [(ngModel)]="age" name="age">
+      </div>
+      <div>
+          <label for="street">Street: </label>
+          <input type="text" [(ngModel)]="address.street" name="address.street">
+        </div>
+        <div>
+            <label for="city">City: </label>
+            <input type="text" [(ngModel)]="address.city" name="address.city">
+          </div>
+          <div>
+              <label for="state">State: </label>
+              <input type="text" [(ngModel)]="address.state" name="address.state">
+            </div>
+    </form>
+  </div>
+
+
+  <ul>
+    <li>Name: {{name}}</li>
+    <li>Age: {{age}}</li>
+    <li>Email: {{email}}</li>
+    <li>{{address.street}} {{address.city}} {{address.state}}  </li>
+  </ul>
+
+  <h3>Hobbies</h3>
+  <form (submit)="addHobby(hobby.value)">
+    <div>
+      <label for="hobby">Hobby:</label>
+      <input type="text" #hobby>
+    </div>
+  </form>
+  <ul>
+      <li *ngFor="let bob of hobbies; let i=index">{{i+1}} : {{bob}} <button (click)="deleteHobby(bob)">X</button></li>
+  </ul>
+
+
+  <h1>Posts : </h1>
+
+  <div *ngFor="let post of posts">
+    <h4>{{post.title}}</h4>
+    <h5>{{post.body}}</h5>
+  </div>
   
 
 </div>
