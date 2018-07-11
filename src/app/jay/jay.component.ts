@@ -7,7 +7,7 @@ import {DataService} from '../services/data.service';
   styleUrls: ['./jay.component.css']
 })
 export class JayComponent implements OnInit {
- 
+  title = "ASDF";
   prasadText = "Jay Component goes here...";
   monthList = ["jan", "feb", "mar", "apr", "may"];
   isavailable= false;
@@ -28,7 +28,6 @@ export class JayComponent implements OnInit {
 
   ngOnInit() {
     console.log("Initiating Jay App compoenent.");
-
     this.name = "Prasad";
     this.age = 27;
     this.email = 'jay@gmail.com';
@@ -39,9 +38,16 @@ export class JayComponent implements OnInit {
     }
     this.hobbies = ['movies', 'games'];
 
+    /*
     this.dataService.getPosts().subscribe((posts) =>{
       this.posts = posts;
     }) 
+    */
+  
+    this.posts = [{
+      title:"Sample title",
+      body:"Sample body",
+    }]
 
   }
 
@@ -78,8 +84,8 @@ export class JayComponent implements OnInit {
 }
 
 interface Post{
-  id:number,
+  id?:number,
   title:string,
   body:string,
-  userId:number
+  userId?:number
 }

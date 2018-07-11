@@ -8,26 +8,29 @@ import { JayComponent } from './jay/jay.component';
 import {DataService} from './services/data.service';
 import {HttpModule} from  '@angular/http';
 import { Jay2Component } from './jay2/jay2.component'
-import {RouterModule, Routes, Router} from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
-/*
-const appRoutes: Routes [
-  {path:'', component:JayComponent},
-  {path:'about', component:Jay2Component}
+
+const appRoutes: Routes = [
+  { path:'', component: JayComponent},
+  { path:'about', component:Jay2Component},
+  { path: '**', component:PageNotFoundComponent  }
 ];
-*/
 
 @NgModule({
   declarations: [
     AppComponent,
     JayComponent,
-    Jay2Component
+    Jay2Component,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    //RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes, { enableTracing: true })
+    //RouterModule.forRoot(appRoutes, { useHash: true })  //When you want to route in single page using # without using <a name="targetname"></a> in html..
   ],
   providers: [DataService],
   bootstrap: [AppComponent]
